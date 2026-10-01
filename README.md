@@ -20,21 +20,30 @@ source-only cross-scene hyperspectral image classification.
 
 ## Abstract
 
-Cross-scene hyperspectral image classification aims to transfer knowledge from a labeled
-source scene to an unseen target scene, despite substantial spectral and spatial shifts
-caused by changes in sensors, locations, and acquisition conditions. Existing prompt-learning
-approaches commonly operate at a single spatial granularity, limiting their ability to model
-both global semantics and fine-grained spatial structure. We introduce **HyperPrompt**, a
-dual-branch framework that unifies patch-level CLIP representations with pixel-level SAM-2
-features through a shared hyperspectral-to-RGB adapter. A Token-wise Cross-Scale Distillation
-Module (TCDM) transfers patch semantics to the pixel branch, while a Prompt-Conditioned
-Low-Rank Adapter (PCLRA) specializes the text representations of both branches. HyperPrompt
-further uses Hyper-Orthogonality Regularization (HOR) to encourage complementary branch semantics and
-a Generalized Product of Experts (GPoE) to perform confidence-aware prediction fusion. The
-foundation-model backbones remain frozen, concentrating learning in lightweight prompts,
-adapters, and fusion components. The framework supports six established prompt-learning
-families and is evaluated under source-only protocols on the Houston, Pavia, and HyRank
-cross-scene benchmarks.
+Cross-scene hyperspectral image classification is fundamentally challenged by spectral shift
+underpinned by sensor variability, atmospheric conditions, and temporal changes. Domain
+adaptation methods require target scene data, while language-guided generalization approaches
+depend on handcrafted descriptions with full encoder fine-tuning, both fail to exploit the
+scene-agnostic representations of large-scale pretrained vision-language models. Moreover,
+no existing prompt learning method simultaneously exploits patch-level spectral-semantic
+context and pixel-level spatial detail for cross-scene hyperspectral transfer. We propose
+HyperPrompt, a dual-branch patch-to-pixel framework based on prompt adaptation of a frozen
+vision–language encoder (CLIP) and a frozen segmentation encoder (SAM-2), unifying CLIP patch
+tokens for global spectral-semantic grounding with frozen SAM-2 pixel tokens for fine-grained
+spatial fidelity, enabling scene-agnostic generalization without any backbone end-to-end
+fine-tuning. A Token-wise Cross-Scale Distillation Module (TCDM) directs semantic knowledge
+flow from patch to pixel tokens; a Prompt-Conditioned Low-Rank Adapter (PCLRA) with
+Hierarchical Orthogonality Regularization dynamically conditions each text encoder on its own
+prompt semantics during training while enforcing complementary branch specialization; and a
+Gated Product-of-Experts (GPoE) fusion demands joint expert confidence to sharpen predictions
+under spectral shift. Extensive experiments on Houston, Pavia, and HyRank demonstrate that
+HyperPrompt consistently outperforms state-of-the-art scene generalization and spectral
+foundation model methods across all evaluation metrics, achieving average AA gains of +6.62%
+and +10.59% over patch-only and pixel-only baselines on Houston, +10.07% and +7.56% on Pavia,
+and +5.59% and +4.73% on HyRank, with particularly pronounced improvements under
+class-imbalanced and low-source conditions.
+
+Code is available at https://github.com/vivekananda05/HyperPrompt.
 
 ## Highlights
 
