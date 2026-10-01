@@ -7,6 +7,7 @@
 ### 🎉 Accepted at the BMVC 2026 Main Conference
 
 [![Project Website](https://img.shields.io/badge/Project-Website-7B2CBF?logo=githubpages&logoColor=white)](https://vivekananda05.github.io/hyperprompt-page/)
+[![arXiv](https://img.shields.io/badge/arXiv-Coming_Soon-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/)
 [![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Task](https://img.shields.io/badge/Task-Cross--Scene%20HSI%20Classification-6A5ACD)](#datasets)
