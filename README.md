@@ -198,10 +198,6 @@ This project builds on ideas and open-source components from
 [MMRL](https://github.com/yunncheng/MMRL). We thank their authors for making their research
 and implementations publicly available.
 
-## Contact
-
-For questions, reproducibility issues, or corrections, please open a GitHub issue.
-
 ---
 
 <div align="center">
