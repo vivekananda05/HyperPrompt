@@ -135,25 +135,6 @@ evaluation.
 | Pavia | Pavia University | Pavia Centre | 7 |
 | HyRank | Dioni | Loukia | 12 |
 
-```text
-data/
-├── Houston/
-│   ├── Houston13.mat
-│   ├── Houston13_7gt.mat
-│   ├── Houston18.mat
-│   └── Houston18_7gt.mat
-├── Pavia/
-│   ├── paviaU.mat
-│   ├── paviaU_7gt.mat
-│   ├── paviaC.mat
-│   └── paviaC_7gt.mat
-└── HyRank/
-    ├── Dioni.mat
-    ├── Dioni_gt_out68.mat
-    ├── Loukia.mat
-    └── Loukia_gt_out68.mat
-```
-
 Dataset paths, class names, palettes, patch size, and source/target assignments live in
 [`configs/datasets`](configs/datasets).
 
@@ -201,25 +182,6 @@ The wrapper signature is:
 
 ```text
 bash scripts/run.sh <dataset> <model> <seed> <run_id>
-```
-
-## Repository map
-
-```text
-HyperPrompt/
-├── configs/                 # Dataset, backbone, and trainer configurations
-├── models/weights/          # Bundled reconstruction checkpoint
-├── scripts/run.sh           # Portable train-then-test launcher
-├── trainers/
-│   ├── models/              # Patch, pixel, and HyperPrompt models
-│   ├── losses/              # Matching objectives
-│   ├── pclra_utils.py       # PCLRA and HOR
-│   ├── sam_backbone.py      # SAM-2 with TCDM
-│   └── hsi_rgb_adapter.py   # Shared spectral projection
-├── config_loader.py         # Configuration composition and CLI
-├── dataset.py               # Cross-scene HSI data pipeline
-├── train.py                 # Training entry point
-└── test.py                  # Target-scene evaluation entry point
 ```
 
 ## Reproducibility notes
