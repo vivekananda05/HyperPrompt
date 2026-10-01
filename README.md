@@ -11,8 +11,6 @@
 [![Task](https://img.shields.io/badge/Task-Cross--Scene%20HSI%20Classification-6A5ACD)](#datasets)
 [![Method](https://img.shields.io/badge/Method-Prompt%20Learning-2E8B57)](#supported-prompt-learners)
 
-**Vivekananda Giri · Ushasi Chaudhuri · Biplab Banerjee**
-
 Official PyTorch implementation of **HyperPrompt**, a patch-to-pixel framework for
 source-only cross-scene hyperspectral image classification.
 
