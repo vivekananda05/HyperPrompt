@@ -1,0 +1,29 @@
+name: "PromptKD (Pixel)"
+description: "Single SAM - PromptKD with Knowledge Distillation (Pixel Branch)"
+type: "single_prompt_learning"
+
+# PromptKD-specific settings with pixel reconstruction
+# Knowledge Distillation with learnable prompts and zero-shot teacher
+prompt:
+  class_token_position: "end"    # "front" | "middle" | "end"
+  ctx_init: "hyperspectral image of a"
+  ctx_len: 8                     # Context tokens for pixel branch
+  csc: False                     # Class-Specific Context
+
+teacher_student:
+  temperature: 4.0               # Temperature for KD (same name as main PromptKD)
+
+# Training
+training:
+  epochs: 50
+  batch_size_train: 32
+  train_split_ratio: 0.8
+  num_workers: 8
+  learning_rate: 2.0e-3
+  weight_decay: 1.0e-4
+
+# Loss weights
+loss_weights:
+  mse: 0.1                       # Reconstruction loss (pixel branch specific)
+  cls: 1.0                       # Classification loss
+  kl: 1.0                        # Knowledge distillation loss (same name as main PromptKD)

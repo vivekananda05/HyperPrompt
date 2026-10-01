@@ -1,0 +1,17 @@
+numpy
+scipy
+scikit-learn
+spectral
+PyYAML
+tqdm
+# Install the CPU/CUDA build first; see README.md.
+torch>=2.2
+# SAM 2 support is required by trainers/sam_backbone.py.
+transformers>=4.56,<6
+safetensors>=0.4
+# Provides the `hf` model-download CLI used in README.md.
+huggingface-hub>=0.34,<2
+h5py
+Pillow
+matplotlib
+pandas

@@ -1,0 +1,24 @@
+name: "PromptKD (Patch)"
+description: "Prompt Knowledge Distillation for Prompt Learning"
+type: "prompt_learning"
+
+prompt:
+  class_token_position: "end"
+  ctx_init: "hyperspectral image of a"
+  ctx_len: 4
+  csc: false
+
+teacher_student:
+  temperature: 4.0
+
+training:
+  epochs: 50
+  batch_size_train: 32
+  train_split_ratio: 0.8
+  num_workers: 8
+  learning_rate: 2.0e-3
+  weight_decay: 1.0e-4
+
+loss_weights:
+  cls: 1.0
+  kl: 1.0

@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Environments and local configuration
+.env
+.venv/
+env/
+*.local.yaml
+
+# Training data, downloaded models, and generated outputs
+data/
+models/clip-vit-base-patch16/
+models/sam2.1-hiera-small/
+models/weights/*
+!models/weights/xclip_jbu_one_million_aid.ckpt
+outputs/
+logs*/
+checkpoints/
+wandb/
+
+# Generated reports and figures
+*.out
+*.err
+*.csv
+*.png
+*.pdf
+paper/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/

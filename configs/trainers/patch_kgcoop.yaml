@@ -1,0 +1,27 @@
+name: "KgCoOp (Patch)"
+description: "Knowledge-Guided Context Optimization for Prompt Learning"
+type: "prompt_learning"
+
+# KgCoOp-specific settings
+# Extends CoCoOp with knowledge-guided regularization
+prompt:
+  class_token_position: "end"    # "front" | "middle" | "end"
+  ctx_init: "hyperspectral image of a"                 # e.g., "hyperspectral image of a"
+  ctx_len: 4
+  csc: false                     # Class-Specific Context
+
+
+# Training
+training:
+  epochs: 50
+  batch_size_train: 32
+  train_split_ratio: 0.8
+  num_workers: 8
+  learning_rate: 2.0e-3
+  weight_decay: 1.0e-4
+
+
+# Loss weights
+loss_weights:
+  cls: 1.0                       # Classification loss weight
+  knowledge: 1.0                 # Knowledge regularization loss weight (same as knowledge_weight)

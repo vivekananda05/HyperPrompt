@@ -1,0 +1,30 @@
+name: "MaPLe (Patch)"
+description: "Modular Prompt Learning for Vision-Language Models"
+type: "prompt_learning"
+
+# MaPLe-specific settings
+prompt:
+  class_token_position: "end"    # "front" | "middle" | "end"
+  ctx_init: "hyperspectral image of a"                 # e.g., "a hyperspectral image of a"
+  ctx_len: 4                    # Number of context tokens per prompt
+  csc: false                     # Class-Specific Context
+  prompt_depth: 3               # Number of transformer layers with prompts
+                                 # 1 = shallow only (like CoOp)
+                                 # 6 = mid-depth (6 layers)
+                                 # 12 = full depth (all transformer layers)
+
+
+# Training
+training:
+  epochs: 50
+  batch_size_train: 32
+  train_split_ratio: 0.8
+  num_workers: 8
+  learning_rate: 2.0e-3
+  weight_decay: 1.0e-4
+
+
+# Loss weights
+loss_weights:
+  cls: 1.0                       # Classification loss
+ 

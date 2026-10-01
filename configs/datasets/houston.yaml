@@ -1,0 +1,47 @@
+name: "Houston"
+description: "Houston dataset for hyperspectral image classification"
+
+# Dataset paths
+data_root: "data/Houston"
+source:
+  hsi_path: "Houston13.mat"
+  gt_path: "Houston13_7gt.mat"
+target:
+  hsi_path: "Houston18.mat"
+  gt_path: "Houston18_7gt.mat"
+
+# Dataset properties
+num_classes: 7
+class_names:
+  - "grass healthy"
+  - "grass stressed"
+  - "trees"
+  - "water"
+  - "residential buildings"
+  - "non-residential buildings"
+  - "road"
+
+# Visualization
+rgb_bands: [11, 43, 21]  # Example RGB band combinations for visualization
+palette:
+  0: [0, 0, 0]              # Background (black)
+  1: [255, 0, 0]            # Class 1
+  2: [0, 255, 0]            # Class 2
+  3: [0, 0, 255]            # Class 3
+  4: [255, 255, 0]          # Class 4
+  5: [255, 0, 255]          # Class 5
+  6: [0, 255, 255]          # Class 6
+  7: [255, 128, 0]          # Class 7
+
+# Preprocessing
+preprocessing:
+  patch_size: 13
+  stride: 1
+  ignored_labels: [0]
+  re_ratio: 1
+
+# Augmentation
+augmentation:
+  flip: true
+  radiation: true
+  mixture: true

@@ -1,0 +1,12 @@
+name: "Prompt-Conditioned Low-Rank Adapter (PCLRA)"
+description: "PCLRA and Hierarchical Orthogonality Regularizer configuration"
+
+pclra:
+  rank: 8                       # Maximum rank r (0 = disabled, >0 = enabled)
+  alpha: 8                       # Scaling alpha
+  prompt_dim: 64                # Aggregated prompt vector dimension d_p
+  last_n: -1                     # How many CLIP text layers to inject (-1 = all)
+  dropout: 0.01                   # Dropout on LoRA input path
+  lambda_hor: 1.0              # lambda_reg in the paper's total objective
+  target_key: ["q_proj", "v_proj"]         # Which weight matrices to target for LoRA injection
+  tau: 0.07                      # LSE temperature for hard selection (0.07 = CLIP default)

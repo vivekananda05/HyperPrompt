@@ -1,0 +1,23 @@
+name: "CoOp (Patch)"
+description: "Single CLIP - Context Optimization for Prompt Learning"
+type: "single_prompt_learning"
+
+# Single CoOp-specific settings
+prompt:
+  class_token_position: "end"    # "front" | "middle" | "end"
+  ctx_init: "hyperspectral image of a"                 # e.g., "a hyperspectral image of a"
+  ctx_len: 4
+  csc: False                     # Class-Specific Context
+
+# Training
+training:
+  epochs: 50
+  batch_size_train: 32
+  train_split_ratio: 0.8
+  num_workers: 8
+  learning_rate: 2.0e-3
+  weight_decay: 1.0e-4
+
+# Loss weights
+loss_weights:
+  cls: 1.0                       # Classification loss

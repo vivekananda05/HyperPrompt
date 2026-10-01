@@ -1,0 +1,10 @@
+name: "Upsamplers"
+description: "Reconstruction Upsampler Configurations"
+type: "upsampling"
+
+# Available upsampler types
+upsamplers:
+  type: "resize_conv"  # Options: "bilinear", "jbu_stack", "sapa", "resize_conv", "carafe"
+  weights: "models/weights/xclip_jbu_one_million_aid.ckpt"
+ 
+  

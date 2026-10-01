@@ -1,0 +1,25 @@
+name: "PromptSRC (Patch)"
+description: "Prompt Self-Reinforcing Contextualization for VL Learning"
+type: "prompt_learning"
+
+prompt:
+  ctx_len_text: 4
+  ctx_len_vision: 4
+  ctx_init: "hyperspectral image of a"
+
+self_reinforcing:
+  temperature: 1.0
+
+training:
+  epochs: 50
+  batch_size_train: 32
+  train_split_ratio: 0.8
+  num_workers: 8
+  learning_rate: 2.0e-3
+  weight_decay: 1.0e-4
+
+loss_weights:
+  cls: 1.0
+  text: 1.0
+  image: 1.0
+  logits: 1.0

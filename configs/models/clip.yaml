@@ -1,0 +1,9 @@
+name: "CLIP"
+description: "CLIP Vision-Language Model Configuration"
+type: "vision_language"
+
+# CLIP Model Configuration
+model:
+  name: "clip-vit-base-patch16"
+  path: "models/clip-vit-base-patch16"
+

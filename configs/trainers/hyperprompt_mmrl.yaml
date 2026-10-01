@@ -1,0 +1,38 @@
+name: "MMRL + HyperPrompt"
+description: "MMRL with the HyperPrompt dual-branch framework"
+type: "prompt_learning"
+
+# Prompt settings used by the HyperPrompt trainer schema
+prompt:
+  class_token_position: "end"
+  ctx_init: "hyperspectral image of a"
+  ctx_len_patch: 4
+  ctx_len_pixel: 8
+  csc: false
+
+# MMRL-specific hyperparameters for representation tokens
+patch_mmrl:
+  n_rep_tokens: 5
+  rep_dim: 512
+  n_layers: 6
+  alpha: 0.7
+  reg_weight: 0.2
+
+# TCDM settings
+tcdm:
+  last_k_layers: 4
+
+# Training
+training:
+  epochs: 50
+  batch_size_train: 32
+  train_split_ratio: 0.8
+  num_workers: 8
+  learning_rate: 2.0e-3
+  weight_decay: 1.0e-4
+
+# Loss weights
+loss_weights:
+  cls: 1.0
+  reg: 0.2
+  mse: 0.1

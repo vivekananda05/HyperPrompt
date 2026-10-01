@@ -1,0 +1,32 @@
+name: "PromptSRC (Pixel)"
+description: "Single SAM - PromptSRC with Self-Reinforcing Contextualization (Pixel Branch)"
+type: "single_prompt_learning"
+
+# PromptSRC-specific settings with pixel reconstruction
+# Self-Reinforcing Contextualization with learnable prompts
+prompt:
+  class_token_position: "end"    # Placeholder for compatibility
+  ctx_init: "hyperspectral image of a"
+  ctx_len: 8                     # Context tokens for pixel branch
+  csc: False                     # Class-Specific Context
+
+# Training
+training:
+  epochs: 50
+  batch_size_train: 32
+  train_split_ratio: 0.8
+  num_workers: 8
+  learning_rate: 2.0e-3
+  weight_decay: 1.0e-4
+
+# Loss weights
+loss_weights:
+  mse: 0.1                       # Reconstruction loss (pixel branch specific)
+  cls: 1.0                       # Classification loss
+  src_text: 1.0                  # L1 loss: learned vs frozen text features
+  src_image: 1.0                 # L1 loss: learned vs frozen image features
+  src_logit: 1.0                 # KL divergence: learned vs frozen logits
+
+# PromptSRC specific parameters
+patch_promptsrc:
+  temperature: 1.0               # Temperature for scaling

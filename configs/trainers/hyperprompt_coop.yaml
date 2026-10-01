@@ -1,0 +1,31 @@
+name: "CoOp + HyperPrompt"
+description: "CoOp with the HyperPrompt dual-branch framework"
+type: "prompt_learning"
+
+# CoOp-specific settings
+prompt:
+  class_token_position: "end"    # "front" | "middle" | "end"
+  ctx_init: "hyperspectral image of a"                 # e.g., "a hyperspectral image of a"
+  ctx_len_patch: 4
+  ctx_len_pixel: 8
+  csc: False                     # Class-Specific Context
+
+# TCDM settings
+tcdm:
+  last_k_layers: 4               # Number of layers used by the Token-wise Cross-Scale Distillation Module
+  use_cls_only: False            # True: use only CLS token for TCDM context, False: use all patches (excluding CLS)
+
+# Training
+training:
+  epochs: 50
+  batch_size_train: 32
+  train_split_ratio: 0.8
+  num_workers: 8
+  learning_rate: 2.0e-3
+  weight_decay: 1.0e-4
+
+
+# Loss weights
+loss_weights:
+  mse: 0.1                       # Reconstruction loss
+  cls: 1.0                       # Classification loss

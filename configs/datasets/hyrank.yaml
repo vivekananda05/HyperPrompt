@@ -1,0 +1,57 @@
+name: "HyRank"
+description: "HyRank dataset for hyperspectral image classification"
+
+# Dataset paths
+data_root: "data/HyRank"
+source:
+  hsi_path: "Dioni.mat"
+  gt_path: "Dioni_gt_out68.mat"
+target:
+  hsi_path: "Loukia.mat"
+  gt_path: "Loukia_gt_out68.mat"
+
+# Dataset properties
+num_classes: 12
+class_names:
+  - "dense urban fabric"
+  - "mineral extraction sites"
+  - "non-irrigated arable land"
+  - "fruit trees"
+  - "olive groves"
+  - "coniferous forest"
+  - "dense sderophyllous vegetation"
+  - "sparse sderophyllous vegetation"
+  - "sparcely vegetated areas"
+  - "rocks and sand"
+  - "water"
+  - "coastal water"
+
+# Visualization
+rgb_bands: [12, 41, 55]
+palette:
+  0: [0, 0, 0]              # Background (black)
+  1: [255, 0, 0]            # Class 1
+  2: [0, 255, 0]            # Class 2
+  3: [0, 0, 255]            # Class 3
+  4: [255, 255, 0]          # Class 4
+  5: [255, 0, 255]          # Class 5
+  6: [0, 255, 255]          # Class 6
+  7: [255, 128, 0]          # Class 7
+  8: [128, 0, 255]          # Class 8
+  9: [0, 128, 255]          # Class 9
+  10: [128, 255, 0]         # Class 10
+  11: [255, 0, 128]         # Class 11
+  12: [0, 255, 128]         # Class 12
+
+# Preprocessing
+preprocessing:
+  patch_size: 13
+  stride: 1
+  ignored_labels: [0]
+  re_ratio: 1
+# Augmentation
+augmentation:
+  flip: true
+  radiation: true
+  mixture: true
+

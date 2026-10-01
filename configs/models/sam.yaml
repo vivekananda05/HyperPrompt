@@ -1,0 +1,8 @@
+name: "SAM"
+description: "Segment Anything Model Configuration"
+type: "segmentation"
+
+# SAM Model Configuration
+model:
+  name: "sam2.1-hiera-small"
+  path: "models/sam2.1-hiera-small"
