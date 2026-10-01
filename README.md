@@ -171,16 +171,6 @@ for model in "${models[@]}"; do
 done
 ```
 
-## Reproducibility notes
-
-- Use the same seed when comparing models.
-- Keep source/target assignments unchanged when comparing with the paper.
-- HyperPrompt defaults to PCLRA rank `8`, prompt dimension `64`, TCDM depth `4`, and
-  `lambda_hor = 1.0`.
-- Dataset, downloaded backbone, and generated checkpoint directories are ignored by Git; the
-  reconstruction upsampler weight is the only bundled model file.
-- Training logs are written under `outputs/<Dataset>/logs/`.
-
 ## Citation
 
 If HyperPrompt is useful in your research, please cite the paper.
