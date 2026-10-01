@@ -43,13 +43,11 @@ and +10.59% over patch-only and pixel-only baselines on Houston, +10.07% and +7.
 and +5.59% and +4.73% on HyRank, with particularly pronounced improvements under
 class-imbalanced and low-source conditions.
 
-Code is available at https://github.com/vivekananda05/HyperPrompt.
-
 ## Architecture
 
 ![Overview of the HyperPrompt architecture](assets/hyperprompt_architecture.png)
 
-*Figure 1: Overview of HyperPrompt. A shared HSI-RGB adapter feeds both branches. CLIP
+*A shared HSI-RGB adapter feeds both branches. CLIP
 ViT-B/16 extracts semantic patch tokens; SAM-2+FeatUp produces dense pixel tokens. TCDM
 establishes directed semantic flow from patch to pixel tokens via layer-wise affine modulation.
 Independent PCLRA-equipped text encoders receive low-rank updates generated from their own
