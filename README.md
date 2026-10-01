@@ -28,9 +28,10 @@ adaptation methods require target scene data, while language-guided generalizati
 depend on handcrafted descriptions with full encoder fine-tuning, both fail to exploit the
 scene-agnostic representations of large-scale pretrained vision-language models. Moreover,
 no existing prompt learning method simultaneously exploits patch-level spectral-semantic
-context and pixel-level spatial detail for cross-scene hyperspectral transfer. We propose
-HyperPrompt, a dual-branch patch-to-pixel framework based on prompt adaptation of a frozen
-vision–language encoder (CLIP) and a frozen segmentation encoder (SAM-2), unifying CLIP patch
+context and pixel-level spatial detail for cross-scene hyperspectral transfer.
+
+We propose HyperPrompt, a dual-branch patch-to-pixel framework based on prompt adaptation of a
+frozen vision–language encoder (CLIP) and a frozen segmentation encoder (SAM-2), unifying CLIP patch
 tokens for global spectral-semantic grounding with frozen SAM-2 pixel tokens for fine-grained
 spatial fidelity, enabling scene-agnostic generalization without any backbone end-to-end
 fine-tuning. A Token-wise Cross-Scale Distillation Module (TCDM) directs semantic knowledge
