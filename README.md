@@ -45,14 +45,16 @@ class-imbalanced and low-source conditions.
 
 Code is available at https://github.com/vivekananda05/HyperPrompt.
 
-## Highlights
+## Architecture
 
-- Unified **patch-only**, **pixel-only**, and **HyperPrompt** comparisons.
-- Six prompt-learning families under one source-to-target evaluation protocol.
-- Frozen CLIP ViT-B/16 and SAM-2 backbones for parameter-efficient adaptation.
-- Paper-aligned implementations of **TCDM**, **PCLRA**, **HOR**, and **GPoE**.
-- Configuration-driven experiments across Houston, Pavia, and HyRank.
-- Reproducible artifact names keyed by dataset, model, seed, and run ID.
+![Overview of the HyperPrompt architecture](assets/hyperprompt_architecture.png)
+
+*Figure 1: Overview of HyperPrompt. A shared HSI-RGB adapter feeds both branches. CLIP
+ViT-B/16 extracts semantic patch tokens; SAM-2+FeatUp produces dense pixel tokens. TCDM
+establishes directed semantic flow from patch to pixel tokens via layer-wise affine modulation.
+Independent PCLRA-equipped text encoders receive low-rank updates generated from their own
+prompt tokens during training; HOR enforces complementary specialization. GPoE fuses
+dual-branch predictions in log-probability space for robust cross-scene classification.*
 
 ## Supported prompt learners
 
@@ -144,13 +146,13 @@ The launcher trains on the source scene and immediately evaluates the saved chec
 target scene:
 
 ```bash
-bash scripts/run.sh houston hyperprompt_promptsrc 42 paper_seed42
+bash scripts/run.sh houston hyperprompt_promptsrc 42
 ```
 
 Its arguments are:
 
 ```text
-bash scripts/run.sh <dataset> <model> <seed> <run_id>
+bash scripts/run.sh <dataset> <model> <seed>
 ```
 
 Valid dataset keys are `houston`, `pavia`, and `hyrank`. To run all 18 models sequentially,
@@ -167,13 +169,13 @@ models=(
 )
 
 for model in "${models[@]}"; do
-  bash scripts/run.sh houston "$model" 42 paper_seed42
+  bash scripts/run.sh houston "$model" 42
 done
 ```
 
 ## Reproducibility notes
 
-- Use the same seed and run ID for training and evaluation.
+- Use the same seed when comparing models.
 - Keep source/target assignments unchanged when comparing with the paper.
 - HyperPrompt defaults to PCLRA rank `8`, prompt dimension `64`, TCDM depth `4`, and
   `lambda_hor = 1.0`.

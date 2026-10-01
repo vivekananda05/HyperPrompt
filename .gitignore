@@ -29,6 +29,7 @@ wandb/
 *.err
 *.csv
 *.png
+!assets/hyperprompt_architecture.png
 *.pdf
 paper/
 
