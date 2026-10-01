@@ -138,50 +138,37 @@ evaluation.
 Dataset paths, class names, palettes, patch size, and source/target assignments live in
 [`configs/datasets`](configs/datasets).
 
-## Training
+## Training and evaluation
 
-Train PromptSRC + HyperPrompt on Houston:
-
-```bash
-python train.py \
-  --dataset houston \
-  --model hyperprompt_promptsrc \
-  --seed 42 \
-  --run-id paper_seed42
-```
-
-The command pattern works for every entry in the model matrix. Valid dataset keys are
-`houston`, `pavia`, and `hyrank`.
-
-For example, train the MaPLe patch-only baseline with:
-
-```bash
-python train.py --dataset pavia --model patch_maple --seed 42 --run-id patch_baseline
-```
-
-## Evaluation
-
-```bash
-python test.py \
-  --dataset houston \
-  --model hyperprompt_promptsrc \
-  --seed 42 \
-  --run-id paper_seed42
-```
-
-Dataset, model, seed, and run ID must match the training command because they determine the
-checkpoint filename.
-
-To train and immediately evaluate:
+The launcher trains on the source scene and immediately evaluates the saved checkpoint on the
+target scene:
 
 ```bash
 bash scripts/run.sh houston hyperprompt_promptsrc 42 paper_seed42
 ```
 
-The wrapper signature is:
+Its arguments are:
 
 ```text
 bash scripts/run.sh <dataset> <model> <seed> <run_id>
+```
+
+Valid dataset keys are `houston`, `pavia`, and `hyrank`. To run all 18 models sequentially,
+choose a dataset and use:
+
+```bash
+models=(
+  patch_coop       pixel_coop       hyperprompt_coop
+  patch_kgcoop     pixel_kgcoop     hyperprompt_kgcoop
+  patch_maple      pixel_maple      hyperprompt_maple
+  patch_promptsrc  pixel_promptsrc  hyperprompt_promptsrc
+  patch_promptkd   pixel_promptkd   hyperprompt_promptkd
+  patch_mmrl       pixel_mmrl       hyperprompt_mmrl
+)
+
+for model in "${models[@]}"; do
+  bash scripts/run.sh houston "$model" 42 paper_seed42
+done
 ```
 
 ## Reproducibility notes
