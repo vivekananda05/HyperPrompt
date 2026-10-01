@@ -18,59 +18,23 @@ source-only cross-scene hyperspectral image classification.
 
 ---
 
-## Why HyperPrompt?
+## Abstract
 
-Hyperspectral scenes change across sensors, locations, atmospheric conditions, and
-acquisition times. A classifier trained on one scene can therefore degrade sharply on
-another—even when the semantic classes remain the same.
-
-HyperPrompt combines two complementary views of an HSI patch:
-
-- **CLIP patch tokens** provide global spectral-semantic context.
-- **SAM-2 pixel tokens** preserve fine-grained spatial structure.
-- **TCDM** transfers semantic knowledge from patch tokens to pixel tokens.
-- **PCLRA** adapts both text encoders using their own learned prompt geometry.
-- **HOR** discourages the two text branches from collapsing to redundant solutions.
-- **GPoE** fuses branch predictions only when both experts assign strong confidence.
-
-CLIP and SAM-2 remain frozen. Learning is concentrated in the spectral adapter, prompts,
-TCDM, PCLRA, projection/reconstruction layers, and fusion gate.
-
-## Method at a glance
-
-```mermaid
-flowchart LR
-    H[HSI cube] --> A[Shared HSI-RGB adapter]
-    A --> R[Pseudo-RGB patch]
-    R --> C[Frozen CLIP ViT-B/16]
-    R --> S[Frozen SAM-2]
-    C --> P[Patch tokens]
-    P --> T[TCDM]
-    S --> X[Pixel tokens]
-    T --> X
-    P --> VP[Patch visual feature]
-    X --> VX[Pixel visual feature]
-    TP[Patch prompt learner] --> EP[PCLRA text encoder]
-    TX[Pixel prompt learner] --> EX[PCLRA text encoder]
-    EP -.-> O[HOR]
-    EX -.-> O
-    VP --> LP[Patch logits]
-    EP --> LP
-    VX --> LX[Pixel logits]
-    EX --> LX
-    LP --> G[GPoE fusion]
-    LX --> G
-    G --> Y[Cross-scene prediction]
-```
-
-The paper objective is implemented as
-
-```text
-loss_total = loss_ce + lambda_recon * loss_recon + lambda_reg * loss_hor
-```
-
-Method-specific objectives from the underlying prompt learner—such as PromptSRC
-consistency or PromptKD distillation—are retained alongside the HyperPrompt terms.
+Cross-scene hyperspectral image classification aims to transfer knowledge from a labeled
+source scene to an unseen target scene, despite substantial spectral and spatial shifts
+caused by changes in sensors, locations, and acquisition conditions. Existing prompt-learning
+approaches commonly operate at a single spatial granularity, limiting their ability to model
+both global semantics and fine-grained spatial structure. We introduce **HyperPrompt**, a
+dual-branch framework that unifies patch-level CLIP representations with pixel-level SAM-2
+features through a shared hyperspectral-to-RGB adapter. A Token-wise Cross-Scale Distillation
+Module (TCDM) transfers patch semantics to the pixel branch, while a Prompt-Conditioned
+Low-Rank Adapter (PCLRA) specializes the text representations of both branches. HyperPrompt
+further uses Hyper-Orthogonality Regularization (HOR) to encourage complementary branch semantics and
+a Generalized Product of Experts (GPoE) to perform confidence-aware prediction fusion. The
+foundation-model backbones remain frozen, concentrating learning in lightweight prompts,
+adapters, and fusion components. The framework supports six established prompt-learning
+families and is evaluated under source-only protocols on the Houston, Pavia, and HyRank
+cross-scene benchmarks.
 
 ## Highlights
 
@@ -115,12 +79,6 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 ```
 
-Install PyTorch before the remaining packages. For CPU-only execution:
-
-```bash
-python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-```
-
 For GPU training, select the command matching your CUDA runtime from the
 [official PyTorch installer](https://pytorch.org/get-started/locally/). Then complete the
 environment and verify the two required backbone classes:
@@ -130,8 +88,7 @@ python -m pip install -r requirements.txt
 python -c "import torch, transformers; from transformers import CLIPModel, Sam2Model; print(f'PyTorch {torch.__version__} | Transformers {transformers.__version__} | CUDA {torch.cuda.is_available()}')"
 ```
 
-CPU execution is supported, but dual-backbone training is computationally expensive. The
-alternative SAPA and CARAFE upsamplers are optional and require their upstream packages;
+The alternative SAPA and CARAFE upsamplers are optional and require their upstream packages;
 the default `resize_conv` setup needs no additional compiled extensions.
 
 ## Download model files
