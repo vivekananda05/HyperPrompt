@@ -152,14 +152,6 @@ hf download facebook/sam2.1-hiera-small \
   --local-dir models/sam2.1-hiera-small
 ```
 
-These commands use the `hf` command installed by `huggingface-hub`. The 5.5 MB SimFeatUp
-reconstruction checkpoint is already included at
-[`models/weights/xclip_jbu_one_million_aid.ckpt`](models/weights/xclip_jbu_one_million_aid.ckpt),
-with attribution to the
-[SegEarth-OV model repository](https://huggingface.co/BiliSakura/SegEarth-OV). If a model is
-stored elsewhere, update the corresponding `path` or `weights` entry in
-[`configs/models`](configs/models).
-
 ## Datasets
 
 HyperPrompt follows strict source-only training: target-scene labels are used only for final
@@ -276,15 +268,15 @@ HyperPrompt/
 
 ## Citation
 
-If HyperPrompt is useful in your research, please cite the paper. Venue and publication
-metadata will be updated after publication.
+If HyperPrompt is useful in your research, please cite the paper.
 
 ```bibtex
-@article{giri2026hyperprompt,
-  title   = {From Patches to Pixels: Dual-Branch Prompt Learning for Hyperspectral Scene Generalization},
-  author  = {Giri, Vivekananda and Chaudhuri, Ushasi and Banerjee, Biplab},
-  year    = {2026},
-  note    = {Manuscript}
+@inproceedings{giri2026hyperprompt,
+  title     = {From Patches to Pixels: Dual-Branch Prompt Learning
+               for Hyperspectral Scene Generalization},
+  author    = {Giri, Vivekananda and Chaudhuri, Ushasi and Banerjee, Biplab},
+  booktitle = {Proceedings of the British Machine Vision Conference (BMVC)},
+  year      = {2026}
 }
 ```
 
@@ -296,9 +288,10 @@ This project builds on ideas and open-source components from
 [FeatUp](https://github.com/mhamilton723/FeatUp),
 [CoOp](https://github.com/KaiyangZhou/CoOp),
 [MaPLe](https://github.com/muzairkhattak/multimodal-prompt-learning),
-[PromptSRC](https://github.com/muzairkhattak/PromptSRC), and
-[PromptKD](https://github.com/zhengli97/PromptKD). We thank their authors for making their
-research and implementations publicly available.
+[PromptSRC](https://github.com/muzairkhattak/PromptSRC),
+[PromptKD](https://github.com/zhengli97/PromptKD), and
+[MMRL](https://github.com/yunncheng/MMRL). We thank their authors for making their research
+and implementations publicly available.
 
 ## Contact
 
